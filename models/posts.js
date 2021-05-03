@@ -19,7 +19,7 @@ Post.init(
                 key: "id"
             }
         },
-        body: {
+        post_body: {
             type: DataTypes.STRING,
             allowNull: false,
         }

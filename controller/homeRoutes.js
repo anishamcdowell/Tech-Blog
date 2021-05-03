@@ -1,24 +1,25 @@
 const sequelize = require("../config/connection");
-const { User } = require ("../models");
+const { User, Post } = require ("../models");
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
-    User.findAll({
-        attributes: [
-            "id",
-            "username",
-            "email",
-            "password",
-        ]
-    })
-    .then(userData => {
-        const users = userData.map(user => user.get({ plain: true}));
-        res.render('homepage');
-    })
-    .catch(err => {
+router.get("/", async (req, res) => {
+    try {
+        Post.findAll({
+            attributes: [
+                "id",
+                "user_id",
+                "post_body",
+            ]
+        })
+        .then(postData => {
+            const posts = postData.map(post => post.get({ plain: true}));
+            res.render("homepage");
+        });
+    }
+    catch (err) {
         console.log(err);
         res.status(500).json(err);
-    })
+    }
 });
 
 module.exports = router;
