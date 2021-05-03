@@ -8,4 +8,4 @@ const Post = require("./posts");
 //     onDelete: "CASCADE"
 // });
 
-module.exports = { User };
+module.exports = { User, Post };
